@@ -12,7 +12,7 @@ _gotpl() {
     fi
 }
 
-_gotpl kibana.yml.tmpl /usr/share/kibana/config/kibana.yml
+_gotpl opensearch-dashboards.yml.tmpl /usr/share/opensearch-dashboards/config/opensearch-dashboards.yml
 
 if [[ "${1}" == 'make' ]]; then
     exec "${@}" -f /usr/local/bin/actions.mk

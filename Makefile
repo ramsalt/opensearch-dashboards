@@ -1,11 +1,11 @@
 -include env_make
 
-KIBANA_VER ?= 1.3.9
-KIBANA_VER_MINOR=$(shell echo "${KIBANA_VER}" | grep -oE '^[0-9]+\.[0-9]+')
+DASHBOARDS_VER ?= 1.3.9
+DASHBOARDS_VER_MINOR=$(shell echo "${DASHBOARDS_VER}" | grep -oE '^[0-9]+\.[0-9]+')
 
-NODEJS_VER ?= $(shell wget -qO- "https://raw.githubusercontent.com/opensearch-project/opensearch-dashboards/$(KIBANA_VER)/.node-version")
+NODEJS_VER ?= $(shell wget -qO- "https://raw.githubusercontent.com/opensearch-project/opensearch-dashboards/$(DASHBOARDS_VER)/.node-version")
 
-TAG ?= $(KIBANA_VER_MINOR)
+TAG ?= $(DASHBOARDS_VER_MINOR)
 
 ifneq ($(STABILITY_TAG),)
     ifneq ($(TAG),latest)
@@ -18,7 +18,7 @@ ifneq ($(BASE_IMAGE_STABILITY_TAG),)
 endif
 
 REPO = ramsalt/dashboards
-NAME = dashboards-$(KIBANA_VER)
+NAME = dashboards-$(DASHBOARDS_VER)
 
 .PHONY: build test push shell run start stop logs clean release
 
@@ -27,11 +27,11 @@ default: build
 build:
 	docker build -t $(REPO):$(TAG) \
 		--build-arg NODEJS_VER=$(NODEJS_VER) \
-		--build-arg KIBANA_VER=$(KIBANA_VER) \
+		--build-arg DASHBOARDS_VER=$(DASHBOARDS_VER) \
 		./
 
 test:
-	cd ./tests && IMAGE=$(REPO):$(TAG) NAME=$(NAME) ES_VER=$(KIBANA_VER_MINOR) ./run.sh
+	cd ./tests && IMAGE=$(REPO):$(TAG) NAME=$(NAME) ES_VER=$(DASHBOARDS_VER_MINOR) ./run.sh
 
 push:
 	docker push $(REPO):$(TAG)
