@@ -17,8 +17,8 @@ ifneq ($(BASE_IMAGE_STABILITY_TAG),)
     BASE_IMAGE_TAG := $(BASE_IMAGE_TAG)-$(BASE_IMAGE_STABILITY_TAG)
 endif
 
-REPO = ghcr.io/ramsalt/dashboards
-NAME = dashboards-$(DASHBOARDS_VER)
+REPO = ghcr.io/ramsalt/opensearch-dashboards
+NAME = opensearch-dashboards-$(DASHBOARDS_VER)
 
 .PHONY: build test push shell run start stop logs clean release
 
@@ -31,7 +31,7 @@ build:
 		./
 
 test:
-	cd ./tests && IMAGE=$(REPO):$(TAG) NAME=$(NAME) ES_VER=$(DASHBOARDS_VER_MINOR) ./run.sh
+	cd ./tests && IMAGE=$(REPO):$(TAG) NAME=$(NAME) OS_VER=$(DASHBOARDS_VER_MINOR) ./run.sh
 
 push:
 	docker push $(REPO):$(TAG)

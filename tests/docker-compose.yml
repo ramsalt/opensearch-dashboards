@@ -2,7 +2,7 @@ version: "2"
 
 services:
   opensearch:
-    image: ramsalt/opensearch:$OS_VER
+    image: ghcr.io/ramsalt/opensearch:$OS_VER
     ulimits:
       memlock:
         soft: -1
