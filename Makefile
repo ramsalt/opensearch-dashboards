@@ -1,9 +1,9 @@
 -include env_make
 
-KIBANA_VER ?= 7.17.9
+KIBANA_VER ?= 1.3.9
 KIBANA_VER_MINOR=$(shell echo "${KIBANA_VER}" | grep -oE '^[0-9]+\.[0-9]+')
 
-NODEJS_VER ?= $(shell wget -qO- "https://raw.githubusercontent.com/elastic/kibana/v$(KIBANA_VER)/.node-version")
+NODEJS_VER ?= $(shell wget -qO- "https://raw.githubusercontent.com/opensearch-project/opensearch-dashboards/$(KIBANA_VER)/.node-version")
 
 TAG ?= $(KIBANA_VER_MINOR)
 
@@ -17,8 +17,8 @@ ifneq ($(BASE_IMAGE_STABILITY_TAG),)
     BASE_IMAGE_TAG := $(BASE_IMAGE_TAG)-$(BASE_IMAGE_STABILITY_TAG)
 endif
 
-REPO = wodby/kibana
-NAME = kibana-$(KIBANA_VER)
+REPO = ramsalt/dashboards
+NAME = dashboards-$(KIBANA_VER)
 
 .PHONY: build test push shell run start stop logs clean release
 

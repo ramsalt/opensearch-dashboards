@@ -48,13 +48,16 @@ RUN set -ex; \
     apk add --no-cache -t .kibana-build-deps gnupg openssl tar; \
     \
     gotpl_url="https://github.com/wodby/gotpl/releases/download/0.1.5/gotpl-alpine-linux-amd64-0.1.5.tar.gz"; \
-    wget -qO- "${gotpl_url}" | tar xz -C /usr/local/bin; \
-    \
+    wget -qO- "${gotpl_url}" | tar xz -C /usr/local/bin; 
+
+COPY opensearch-dashboards-${KIBANA_VER}-linux-x64.tar.gz /tmp/kibana.tar.gz
+
+RUN set -ex; \
     cd /tmp; \
-    kibana_url="https://artifacts.elastic.co/downloads/kibana/kibana-${KIBANA_VER}-linux-x86_64.tar.gz"; \
-    curl -o kibana.tar.gz -Lskj "${kibana_url}"; \
-    curl -o kibana.tar.gz.asc -Lskj "${kibana_url}.asc"; \
-    GPG_KEYS=46095ACC8548582C1A2699A9D27D666CD88E42B4 gpg_verify /tmp/kibana.tar.gz.asc /tmp/kibana.tar.gz; \
+    kibana_url="https://artifacts.opensearch.org/releases/bundle/opensearch-dashboards/${KIBANA_VER}/opensearch-dashboards-${KIBANA_VER}-linux-x64.tar.gz"; \
+    [ -f kibana.tar.gz ] || curl -o kibana.tar.gz -Lskj "${kibana_url}"; \
+    curl -o kibana.tar.gz.sig -Lskj "${kibana_url}.sig"; \
+    GPG_KEYS=C5B7498965EFD1C2924BA9D539D319879310D3FC gpg_verify /tmp/kibana.tar.gz.sig /tmp/kibana.tar.gz; \
     \
     mkdir -p /usr/share/kibana/node/bin; \
     tar zxf kibana.tar.gz --strip-components=1 -C /usr/share/kibana; \
@@ -63,7 +66,8 @@ RUN set -ex; \
     \
     # Modify script to support custom node location.
     # https://discuss.elastic.co/t/kibana-7-0-node-binary-location/180793
-    sed -i -E 's/(test -x "\$NODE"$)/\1 || NODE=$(which node)/' /usr/share/kibana/bin/kibana; \
+    ls -l /usr/share/kibana/bin; \
+    sed -i -E 's/(test -x "\$NODE"$)/\1 || NODE=$(which node)/' /usr/share/kibana/bin/opensearch-dashboards; \
     \
     apk del --purge .kibana-build-deps; \
     rm -rf /tmp/*; \
