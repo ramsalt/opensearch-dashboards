@@ -48,11 +48,8 @@ RUN set -ex; \
     apk add --no-cache -t .dashboards-build-deps gnupg openssl tar; \
     \
     gotpl_url="https://github.com/wodby/gotpl/releases/download/0.1.5/gotpl-alpine-linux-amd64-0.1.5.tar.gz"; \
-    wget -qO- "${gotpl_url}" | tar xz -C /usr/local/bin; 
-
-COPY opensearch-dashboards-${DASHBOARDS_VER}-linux-x64.tar.gz /tmp/dashboards.tar.gz
-
-RUN set -ex; \
+    wget -qO- "${gotpl_url}" | tar xz -C /usr/local/bin; \
+    \
     cd /tmp; \
     dashboards_url="https://artifacts.opensearch.org/releases/bundle/opensearch-dashboards/${DASHBOARDS_VER}/opensearch-dashboards-${DASHBOARDS_VER}-linux-x64.tar.gz"; \
     [ -f dashboards.tar.gz ] || curl -o dashboards.tar.gz -Lskj "${dashboards_url}"; \
