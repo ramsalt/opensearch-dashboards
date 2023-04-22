@@ -1,0 +1,22 @@
+name: Build
+description: Build kibana image
+inputs:
+  version:
+    description: version
+    required: true
+  tags:
+    description: image tags
+    required: true
+runs:
+  using: "composite"
+  steps:
+  - name: Build image
+    env:
+      KIBANA_VER: ${{ inputs.version }}
+      TAGS: ${{ inputs.tags }}
+    run: |
+      set -e
+      make
+      make test
+      . $GITHUB_ACTION_PATH/release.sh
+    shell: bash
