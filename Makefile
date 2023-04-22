@@ -17,7 +17,7 @@ ifneq ($(BASE_IMAGE_STABILITY_TAG),)
     BASE_IMAGE_TAG := $(BASE_IMAGE_TAG)-$(BASE_IMAGE_STABILITY_TAG)
 endif
 
-REPO = ramsalt/dashboards
+REPO = ghcr.io/ramsalt/dashboards
 NAME = dashboards-$(DASHBOARDS_VER)
 
 .PHONY: build test push shell run start stop logs clean release
