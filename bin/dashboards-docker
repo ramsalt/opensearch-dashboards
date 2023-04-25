@@ -150,4 +150,4 @@ done
 # Therefore, we set this value here so that cgroup statistics are
 # available for the container this process will run in.
 
-exec /usr/share/opensearch-dashboards/bin/opensearch-dashboards --cpu.cgroup.path.override=/ --cpuacct.cgroup.path.override=/ ${longopts} "$@"
+exec /usr/share/dashboards/bin/opensearch-dashboards --cpu.cgroup.path.override=/ --cpuacct.cgroup.path.override=/ ${longopts} "$@"
