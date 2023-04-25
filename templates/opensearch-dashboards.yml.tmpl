@@ -1,7 +1,0 @@
----
-# Default Kibana configuration from kibana-docker.
-
-server.name: {{ getenv "DASHBOARDS_SERVER_NAME" "kibana" }}
-server.host: "{{ getenv "DASHBOARDS_SERVER_HOST" "0" }}"
-elasticsearch.hosts: {{ getenv "DASHBOARDS_OPENSEARCH_HOSTS" "http://elasticsearch:9200" }}
-xpack.reporting.kibanaServer.hostname: 0.0.0.0

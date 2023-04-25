@@ -1,0 +1,17 @@
+---
+# Default Kibana configuration from kibana-docker.
+
+server.name: {{ getenv "DASHBOARDS_SERVER_NAME" "kibana" }}
+server.host: "{{ getenv "DASHBOARDS_SERVER_HOST" "0" }}"
+
+opensearch.hosts: [{{ getenv "DASHBOARDS_OPENSEARCH_HOSTS" "http://opensearch:9200" }}]
+opensearch.ssl.verificationMode: none
+opensearch.username: kibanaserver
+opensearch.password: kibanaserver
+opensearch.requestHeadersWhitelist: [authorization, securitytenant]
+
+opensearch_security.multitenancy.enabled: true
+opensearch_security.multitenancy.tenants.preferred: [Private, Global]
+opensearch_security.readonly_mode.roles: [kibana_read_only]
+# Use this setting if you are running opensearch-dashboards without https
+opensearch_security.cookie.secure: false

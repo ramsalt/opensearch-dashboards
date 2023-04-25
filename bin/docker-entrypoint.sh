@@ -12,7 +12,7 @@ _gotpl() {
     fi
 }
 
-_gotpl opensearch-dashboards.yml.tmpl /usr/share/dashboards/config/opensearch-dashboards.yml
+_gotpl opensearch_dashboards.yml.tmpl /usr/share/dashboards/config/opensearch_dashboards.yml
 
 if [[ "${1}" == 'make' ]]; then
     exec "${@}" -f /usr/local/bin/actions.mk
