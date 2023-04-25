@@ -16,6 +16,7 @@ opensearch_security.readonly_mode.roles: [kibana_read_only]
 # Use this setting if you are running opensearch-dashboards without https
 opensearch_security.cookie.secure: false
 
+opensearch_security.auth.type: "openid"
 opensearch_security.openid.connect_url: "{{ getenv "OIDC_CONNECT_URL" }}"
 opensearch_security.openid.client_id: "{{ getenv "OIDC_CLIENT_ID" }}"
 opensearch_security.openid.client_secret: "{{ getenv "OIDC_CLIENT_SECRET" }}"
