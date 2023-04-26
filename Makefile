@@ -1,6 +1,6 @@
 -include env_make
 
-DASHBOARDS_VER ?= 1.3.9
+DASHBOARDS_VER ?= 2.6.0
 DASHBOARDS_VER_MINOR=$(shell echo "${DASHBOARDS_VER}" | grep -oE '^[0-9]+\.[0-9]+')
 
 NODEJS_VER ?= $(shell wget -qO- "https://raw.githubusercontent.com/opensearch-project/opensearch-dashboards/$(DASHBOARDS_VER)/.node-version")
