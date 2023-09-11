@@ -47,3 +47,27 @@ default params values:
 
 Deploy Kibana with Elasticsearch to your own server via [![Wodby](https://www.google.com/s2/favicons?domain=wodby.com) Wodby](https://wodby.com/stacks/elasticsearch).
 
+## Upgrading
+
+To upgrade the underlying version of Opensearch, edit `version` and `tags` in `.github/workflows/workflow.yml`:
+
+```
+     - uses: actions/checkout@v2
+     - uses: ./.github/actions
+       with:
+        version: '1.3.12'
+        tags: 1.3.12,1.3,1,latest
+```
+
+_**Attention:** you need to build the related version of `opensearch` before upgrading `opensearch-dashboards`._
+
+To finalize the release, add an increasing stability tag:
+
+```
+git commit -m "Upgrade Opensearch Dashboards to 1.3.12" .
+git tag -m "Upgrade Opensearch Dashboards to 1.3.12" 1.0.3
+git push && git push --tags
+
+```
+
+The resulting image will be available as `ghcr.io/ramsalt/opensearch-dashboards:1.3.12-1.0.3`
