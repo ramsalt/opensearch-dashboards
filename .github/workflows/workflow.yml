@@ -20,5 +20,5 @@ jobs:
     - uses: actions/checkout@v2
     - uses: ./.github/actions
       with:
-        version: '2.6.0'
-        tags: 2.6.0,2.6,2
+        version: '2.9.0'
+        tags: 2.9.0,2.9,2
