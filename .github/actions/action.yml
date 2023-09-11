@@ -12,7 +12,7 @@ runs:
   steps:
   - name: Build image
     env:
-      KIBANA_VER: ${{ inputs.version }}
+      DASHBOARDS_VER: ${{ inputs.version }}
       TAGS: ${{ inputs.tags }}
     run: |
       set -e
