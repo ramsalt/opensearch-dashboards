@@ -10,7 +10,7 @@ if [[ -n "${TRAVIS}" ]]; then
     sudo sysctl -w vm.max_map_count=262144
 fi
 
-docker-compose up -d
-docker-compose exec -T opensearch make check-ready wait_seconds=5 max_try=30 -f /usr/local/bin/actions.mk
-docker-compose exec -T dashboards make check-ready wait_seconds=5 max_try=30 -f /usr/local/bin/actions.mk
-docker-compose down
+docker compose up -d
+docker compose exec -T opensearch make check-ready wait_seconds=5 max_try=30 -f /usr/local/bin/actions.mk
+docker compose exec -T dashboards make check-ready wait_seconds=5 max_try=30 -f /usr/local/bin/actions.mk
+docker compose down
