@@ -16,10 +16,30 @@ opensearch_security.readonly_mode.roles: [kibana_read_only]
 # Use this setting if you are running opensearch-dashboards without https
 opensearch_security.cookie.secure: false
 
-{{- if getenv "OIDC_CONNECT_URL" }}
-opensearch_security.auth.type: "openid"
+{{ define "OIDC" -}}
 opensearch_security.openid.connect_url: "{{ getenv "OIDC_CONNECT_URL" }}"
 opensearch_security.openid.client_id: "{{ getenv "OIDC_CLIENT_ID" }}"
 opensearch_security.openid.client_secret: "{{ getenv "OIDC_CLIENT_SECRET" }}"
 opensearch_security.openid.base_redirect_url: "{{ getenv "DASHBOARDS_ENDPOINT_URL" }}"
+{{- end -}}
+
+{{ define "SAML" -}}
+server.xsrf.allowlist: ["/_opendistro/_security/saml/acs"]
+{{- end -}}
+
+{{- if getenv "AUTH_TYPE_OIDC" }}
+opensearch_security.auth.type: "oidc"
+{{ template "OIDC" }}
+{{- end -}}
+
+{{- if getenv "AUTH_TYPE_SAML" }}
+opensearch_security.auth.type: "saml"
+{{ template "SAML" }}
+{{- end }}
+
+{{- if getenv "AUTH_TYPE_OIDC_AND_SAML" }}
+{{ template "OIDC" }}
+{{ template "SAML" }}
+opensearch_security.auth.type: ["oidc", "saml"]
+opensearch_security.auth.multiple_auth_enabled: true
 {{- end }}
