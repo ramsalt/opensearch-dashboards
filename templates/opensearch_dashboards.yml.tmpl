@@ -24,7 +24,8 @@ opensearch_security.openid.base_redirect_url: "{{ getenv "DASHBOARDS_ENDPOINT_UR
 {{- end -}}
 
 {{ define "SAML" -}}
-server.xsrf.allowlist: ["/_opendistro/_security/saml/acs"]
+server.xsrf.allowlist: ["/_plugins/_security/saml/acs", "/_plugins/_security/saml/logout", "/_opendistro/_security/saml/acs", "/_opendistro/_security/saml/logout", "/_opendistro/_security/saml/acs/idpinitiated"]
+server.xsrf.whitelist: ["/_plugins/_security/saml/acs", "/_plugins/_security/saml/logout", "/_opendistro/_security/saml/acs", "/_opendistro/_security/saml/logout", "/_opendistro/_security/saml/acs/idpinitiated"]
 {{- end -}}
 
 {{- if getenv "AUTH_TYPE_OIDC" }}
