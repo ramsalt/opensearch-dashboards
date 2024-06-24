@@ -28,7 +28,7 @@ server.xsrf.allowlist: ["/_opendistro/_security/saml/acs/idpinitiated", "/_opend
 {{- end -}}
 
 {{- if getenv "AUTH_TYPE_OIDC" }}
-opensearch_security.auth.type: "oidc"
+opensearch_security.auth.type: "openid"
 {{ template "OIDC" }}
 {{- end -}}
 
@@ -40,7 +40,7 @@ opensearch_security.auth.type: "saml"
 {{- if getenv "AUTH_TYPE_OIDC_AND_SAML" }}
 {{ template "OIDC" }}
 {{ template "SAML" }}
-opensearch_security.auth.type: ["oidc", "saml"]
+opensearch_security.auth.type: ["openid", "saml"]
 opensearch_security.auth.multiple_auth_enabled: true
 {{- end }}
 
