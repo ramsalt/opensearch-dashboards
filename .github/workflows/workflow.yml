@@ -4,6 +4,7 @@ on:
   push:
     branches:
     - opensearch-dashboards
+    - opensearch-dashboards-1.x
 
     tags:
     - '*'
