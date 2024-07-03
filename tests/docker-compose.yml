@@ -1,5 +1,3 @@
-version: "2"
-
 services:
   opensearch:
     image: ghcr.io/ramsalt/opensearch:$OS_VER
