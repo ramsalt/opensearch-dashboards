@@ -8,7 +8,9 @@ ENV DASHBOARDS_VER=${DASHBOARDS_VER} \
     LANG="C.UTF-8" \
     JAVA_HOME="/usr/lib/jvm/java-1.8-openjdk/jre" \
     \
-    PATH="${PATH}:/usr/share/dashboards/bin:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin"
+    PATH="${PATH}:/usr/share/dashboards/bin:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin" \
+    \
+    ADMIN_PASSWORD=admin
 
 COPY bin /usr/local/bin/
 
