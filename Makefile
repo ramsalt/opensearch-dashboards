@@ -3,6 +3,8 @@
 DASHBOARDS_VER ?= 2.15.0
 DASHBOARDS_VER_MINOR=$(shell echo "${DASHBOARDS_VER}" | grep -oE '^[0-9]+\.[0-9]+')
 
+ENHANCED_TABLE_VER ?= 1.14.0
+
 NODEJS_VER ?= $(shell wget -qO- "https://raw.githubusercontent.com/opensearch-project/opensearch-dashboards/$(DASHBOARDS_VER)/.node-version")
 
 TAG ?= $(DASHBOARDS_VER_MINOR)
@@ -28,6 +30,7 @@ build:
 	docker build -t $(REPO):$(TAG) \
 		--build-arg NODEJS_VER=$(NODEJS_VER) \
 		--build-arg DASHBOARDS_VER=$(DASHBOARDS_VER) \
+		--build-arg ENHANCED_TABLE_VER=$(ENHANCED_TABLE_VER) \
 		./
 
 test:

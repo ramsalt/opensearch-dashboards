@@ -75,6 +75,12 @@ USER 1000
 
 WORKDIR /usr/share/dashboards
 
+ARG ENHANCED_TABLE_VER
+
+RUN enhanced_table_url="https://github.com/fbaligand/kibana-enhanced-table/releases/download/v${ENHANCED_TABLE_VER}/enhanced-table-${ENHANCED_TABLE_VER}_osd-${DASHBOARDS_VER}.zip"; \
+    echo $enhanced_table_url; \
+    bin/opensearch-dashboards-plugin install "$enhanced_table_url"
+
 COPY templates /etc/gotpl
 
 EXPOSE 5601
