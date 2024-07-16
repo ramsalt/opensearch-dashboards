@@ -9,16 +9,30 @@ on:
     - '*'
 
 env:
-  DOCKER_REGISTRY: ghcr.io
-  DOCKER_USERNAME: ${{ github.actor }}
-  DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+  OS_VERSION: 2.15.0
+  TAGS: 2.15.0,2.15,2,latest
 
 jobs:
   dashboards-1:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v2
+
     - uses: ./.github/actions
+      env:
+        DOCKER_REGISTRY: docker.io
+        DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
       with:
-        version: '2.15.0'
-        tags: 2.15.0,2.15,2,latest
+        version: '${{ env.OS_VERSION }}'
+        tags: ${{ env.TAGS }}
+
+    - uses: ./.github/actions
+      env:
+        DOCKER_REGISTRY: ghcr.io
+        DOCKER_USERNAME: ${{ github.actor }}
+        DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        version: '${{ env.OS_VERSION }}'
+        tags: ${{ env.TAGS }}

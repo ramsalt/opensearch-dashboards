@@ -19,7 +19,8 @@ ifneq ($(BASE_IMAGE_STABILITY_TAG),)
     BASE_IMAGE_TAG := $(BASE_IMAGE_TAG)-$(BASE_IMAGE_STABILITY_TAG)
 endif
 
-REPO = ghcr.io/ramsalt/opensearch-dashboards
+DOCKER_REGISTRY ?= ghcr.io
+REPO = ${DOCKER_REGISTRY}/ramsalt/opensearch-dashboards
 NAME = opensearch-dashboards-$(DASHBOARDS_VER)
 
 .PHONY: build test push shell run start stop logs clean release
