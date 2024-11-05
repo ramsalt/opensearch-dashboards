@@ -10,7 +10,8 @@ ENV DASHBOARDS_VER=${DASHBOARDS_VER} \
     \
     PATH="${PATH}:/usr/share/dashboards/bin:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin" \
     \
-    ADMIN_PASSWORD=admin
+    ADMIN_PASSWORD=admin \
+    KIBANASERVER_PASSWORD=kibanaserver
 
 COPY bin /usr/local/bin/
 

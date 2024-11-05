@@ -6,8 +6,8 @@ server.host: "{{ getenv "DASHBOARDS_SERVER_HOST" "0.0.0.0" }}"
 
 opensearch.hosts: [{{ getenv "DASHBOARDS_OPENSEARCH_HOSTS" "https://opensearch:9200" }}]
 opensearch.ssl.verificationMode: none
-opensearch.username: kibanaserver
-opensearch.password: "{{ getenv "KIBANASERVER_PASSWORD" "kibanaserver" }}"
+opensearch.username: {{ getenv "KIBANASERVER_USER" "kibanaserver" }}
+opensearch.password: {{ getenv "KIBANASERVER_PASSWORD" "kibanaserver" }}
 opensearch.requestHeadersWhitelist: [authorization, securitytenant]
 
 {{- if getenv "DISABLE_MULTITENANCY" }}
