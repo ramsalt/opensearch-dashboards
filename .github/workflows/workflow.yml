@@ -9,8 +9,8 @@ on:
     - '*'
 
 env:
-  OS_VERSION: 2.15.0
-  TAGS: 2.15.0,2.15,2,latest
+  OS_VERSION: 2.17.1
+  TAGS: 2.17.1,2.17,2,latest
 
 jobs:
   dashboards-1:
