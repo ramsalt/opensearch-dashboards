@@ -58,3 +58,12 @@ opensearch_security.auth.multiple_auth_enabled: true
 {{- end }}
 
 data_source.enabled: true
+
+# Time in milliseconds to wait for responses from the back end or OpenSearch. This value
+# must be a positive integer.
+#opensearch.requestTimeout: 30000
+opensearch.requestTimeout: 120000
+
+# Time in milliseconds for OpenSearch to wait for responses from shards. Set to 0 to disable.
+#opensearch.shardTimeout: 30000
+opensearch.shardTimeout: 120000
