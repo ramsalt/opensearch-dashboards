@@ -10,7 +10,7 @@ on:
 
 env:
   OS_VERSION: 2.19.2
-  TAGS: 2.19.0,2.19,2,latest
+  TAGS: 2.19.2,2.19,2,latest
 
 jobs:
   dashboards-1:
