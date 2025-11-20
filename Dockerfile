@@ -56,7 +56,7 @@ RUN set -ex; \
     dashboards_url="https://artifacts.opensearch.org/releases/bundle/opensearch-dashboards/${DASHBOARDS_VER}/opensearch-dashboards-${DASHBOARDS_VER}-linux-x64.tar.gz"; \
     [ -f dashboards.tar.gz ] || curl -o dashboards.tar.gz -Lskj "${dashboards_url}"; \
     curl -o dashboards.tar.gz.sig -Lskj "${dashboards_url}.sig"; \
-    GPG_KEYS=C5B7498965EFD1C2924BA9D539D319879310D3FC gpg_verify /tmp/dashboards.tar.gz.sig /tmp/dashboards.tar.gz; \
+    GPG_KEYS=A8B2D9E04CD51FEF6AA2DB53BA81D99981191457 gpg_verify /tmp/dashboards.tar.gz.sig /tmp/dashboards.tar.gz; \
     \
     mkdir -p /usr/share/dashboards/node/bin; \
     tar zxf dashboards.tar.gz --strip-components=1 -C /usr/share/dashboards; \
