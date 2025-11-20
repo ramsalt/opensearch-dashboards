@@ -60,13 +60,8 @@ RUN set -ex; \
     \
     mkdir -p /usr/share/dashboards/node/bin; \
     tar zxf dashboards.tar.gz --strip-components=1 -C /usr/share/dashboards; \
-    ln -sf /usr/bin/node /usr/share/dashboards/node/bin/node; \
+    ln -sf /usr/local/bin/node /usr/share/dashboards/node/bin/node; \
     chown -R dashboards:dashboards /usr/share/dashboards; \
-    \
-    # Modify script to support custom node location.
-    # https://discuss.elastic.co/t/dashboards-7-0-node-binary-location/180793
-    ls -l /usr/share/dashboards/bin; \
-    sed -i -E 's/(test -x "\$NODE"$)/\1 || NODE=$(which node)/' /usr/share/dashboards/bin/opensearch-dashboards; \
     \
     apk del --purge .dashboards-build-deps; \
     rm -rf /tmp/*; \
