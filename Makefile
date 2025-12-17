@@ -1,6 +1,6 @@
 -include env_make
 
-DASHBOARDS_VER ?= 3.3.0
+DASHBOARDS_VER ?= 3.4.0
 DASHBOARDS_VER_MINOR=$(shell echo "${DASHBOARDS_VER}" | grep -oE '^[0-9]+\.[0-9]+')
 
 ENHANCED_TABLE_VER ?= 1.14.0
