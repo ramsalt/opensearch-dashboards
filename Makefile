@@ -3,7 +3,7 @@
 DASHBOARDS_VER ?= 3.5.0
 DASHBOARDS_VER_MINOR=$(shell echo "${DASHBOARDS_VER}" | grep -oE '^[0-9]+\.[0-9]+')
 
-ENHANCED_TABLE_VER ?= 1.14.0
+ENHANCED_TABLE_VER ?= 1.15.0
 
 NODEJS_VER ?= $(shell wget -qO- "https://raw.githubusercontent.com/opensearch-project/opensearch-dashboards/$(DASHBOARDS_VER)/.node-version")
 
